@@ -119,7 +119,6 @@ end
 
 FishList = ["Haddock", "Cod", "Magic Heddock", "Bass", "Seaweed"]
 Fish = Selector.new(FishList, sort = true)
-Fish.items
 Fish.select("Cod")
 Fish.togglei(2)
 Fish.printer
