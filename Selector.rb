@@ -24,6 +24,20 @@ class Selector
     end
     return false
   end
+  def deselect(item)
+    if @items.include?(item)
+      @selected[@items.index(item)] = false
+      return true
+    end
+    return false
+  end
+  def deselecti(index)
+    if index.between?(0, @items.length)
+      @selected[index] = false
+      return true
+    end
+    return false
+  end
   def toggle(item)
     if @items.include?(item)
       @selected[@items.index(item)] = !@selected[@items.index(item)]
@@ -110,7 +124,7 @@ Fish.select("Cod")
 Fish.togglei(2)
 Fish.printer
 Fish.invert
-Fish.toggle("Bass")
+Fish.deselect("Bass")
 Fish.printer
 FishInterface = Interface.new(prompt="=>", mode=["index", "name"], Fish)
 FishInterface.loop
