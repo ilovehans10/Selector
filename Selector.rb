@@ -49,6 +49,32 @@ class Selector
   end
 end
 
+class Interface
+  def initialize(prompt="=>", mode=["index", "name"], selector)
+    @prompt = prompt
+    @mode = mode
+    @selector = selector
+    loop
+  end
+  def display
+    @selector.printer
+  end
+  def get
+    print @prompt
+    input = gets.strip
+    if @mode.include?("index")
+      @selector.togglei(input.to_i)
+    end
+    if @mode.include?("name")
+      @selector.toggle(input)
+    end
+  end
+  def loop
+    display
+    get
+  end
+end
+
 FishList = ["Haddock", "Cod", "Magic Heddock", "Bass", "Seaweed"]
 Fish = Selector.new(FishList, sort = true)
 Fish.items
@@ -59,3 +85,7 @@ puts "----------"
 Fish.invert
 Fish.toggle("Bass")
 Fish.printer
+puts "----------"
+FishInterface = Interface.new(prompt="=>", mode=["index", "name"], Fish)
+FishInterface.loop
+FishInterface.display
