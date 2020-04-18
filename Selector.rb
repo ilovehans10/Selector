@@ -62,6 +62,20 @@ class Selector
     end
     return list
   end
+  def getunselected
+    list = []
+    (0 ... @items.length).each do |item|
+      @selected[item] ? "" : list.append(@items[item])
+    end
+    return list
+  end
+  def getunselectedi
+    list = []
+    (0 ... @items.length).each do |item|
+      @selected[item] ? "" : list.append(item)
+    end
+    return list
+  end
 end
 
 class Interface
