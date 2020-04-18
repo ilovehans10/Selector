@@ -47,6 +47,20 @@ class Selector
   def invert
     selected.map!{ |index| index = !index}
   end
+  def getselected
+    list = []
+    (0 ... @items.length).each do |item|
+      @selected[item] ? list.append(@items[item]) : ""
+    end
+    return list
+  end
+  def getselectedi
+    list = []
+    (0 ... @items.length).each do |item|
+      @selected[item] ? list.append(item) : ""
+    end
+    return list
+  end
 end
 
 class Interface
