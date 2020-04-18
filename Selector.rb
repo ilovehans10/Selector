@@ -43,6 +43,7 @@ class Selector
       print @selected[item] ? "[X] " : "[ ] "
       puts @items[item]
     end
+    puts
   end
   def invert
     selected.map!{ |index| index = !index}
@@ -68,7 +69,6 @@ class Interface
     @prompt = prompt
     @mode = mode
     @selector = selector
-    loop
   end
   def display
     @selector.printer
@@ -95,11 +95,10 @@ Fish.items
 Fish.select("Cod")
 Fish.togglei(2)
 Fish.printer
-puts "----------"
 Fish.invert
 Fish.toggle("Bass")
 Fish.printer
-puts "----------"
 FishInterface = Interface.new(prompt="=>", mode=["index", "name"], Fish)
+FishInterface.loop
 FishInterface.loop
 FishInterface.display
