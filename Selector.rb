@@ -1,3 +1,8 @@
+# Allows case to use include
+def ===(value)
+  include?(value)
+end
+
 class Selector
   attr_accessor :items, :selected
   def initialize(items, sort = false)
