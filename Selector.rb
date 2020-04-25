@@ -3,6 +3,10 @@ def ===(value)
   include?(value)
 end
 
+def is_numeric?(s)
+  !!Float(s) rescue false
+end
+
 class Selector
   attr_accessor :items, :selected
   def initialize(items, sort = false)
@@ -104,7 +108,7 @@ class Interface
   def get
     print @prompt
     input = gets.strip
-    if @mode.include?("index")
+    if @mode.include?("index") and is_numeric?(input)
       @selector.togglei(input.to_i)
     end
     if @mode.include?("name")
