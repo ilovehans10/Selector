@@ -1,7 +1,3 @@
-def is_numeric?(s)
-  !!Float(s) rescue false
-end
-
 class Selector
   attr_accessor :items, :selected
   def initialize(items, sort = false)
@@ -90,49 +86,3 @@ class Selector
     return list
   end
 end
-
-class Interface
-  def initialize(prompt="=>", mode=["index", "name"], selector)
-    @prompt = prompt
-    @mode = mode
-    @selector = selector
-  end
-  def display
-    @selector.printer
-  end
-  def get
-    print @prompt
-    input = gets.strip
-    if @mode.include?("index") and is_numeric?(input)
-      @selector.togglei(input.to_i)
-      return true
-    end
-    if @mode.include?("name")
-      @selector.toggle(input)
-      return true
-    end
-    return false
-  end
-  def loop(times=1)
-    if times == 0
-      return
-    elsif times > 0
-      times -= 1
-      loop(times)
-      display
-      get
-    end
-  end
-end
-
-FishList = ["Haddock", "Cod", "Magic Heddock", "Bass", "Seaweed"]
-Fish = Selector.new(FishList, sort = true)
-Fish.select("Cod")
-Fish.togglei(2)
-Fish.printer
-Fish.invert
-Fish.deselect("Bass")
-Fish.printer
-FishInterface = Interface.new(prompt="=>", mode=["index", "name"], Fish)
-FishInterface.loop(3)
-FishInterface.display
