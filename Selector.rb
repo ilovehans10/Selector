@@ -1,8 +1,3 @@
-# Allows case to use include
-def ===(value)
-  include?(value)
-end
-
 def is_numeric?(s)
   !!Float(s) rescue false
 end
