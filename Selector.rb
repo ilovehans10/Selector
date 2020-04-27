@@ -110,10 +110,13 @@ class Interface
     input = gets.strip
     if @mode.include?("index") and is_numeric?(input)
       @selector.togglei(input.to_i)
+      return true
     end
     if @mode.include?("name")
       @selector.toggle(input)
+      return true
     end
+    return false
   end
   def loop
     display
