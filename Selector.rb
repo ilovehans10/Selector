@@ -118,9 +118,15 @@ class Interface
     end
     return false
   end
-  def loop
-    display
-    get
+  def loop(times=1)
+    if times == 0
+      return
+    elsif times > 0
+      times -= 1
+      loop(times)
+      display
+      get
+    end
   end
 end
 
@@ -133,6 +139,5 @@ Fish.invert
 Fish.deselect("Bass")
 Fish.printer
 FishInterface = Interface.new(prompt="=>", mode=["index", "name"], Fish)
-FishInterface.loop
-FishInterface.loop
+FishInterface.loop(3)
 FishInterface.display
