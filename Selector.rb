@@ -47,13 +47,6 @@ class Selector
     end
     return false
   end
-  def printer
-    (0 ... @items.length).each do |item|
-      print @selected[item] ? "[X] " : "[ ] "
-      puts @items[item]
-    end
-    puts
-  end
   def invert
     selected.map!{ |index| index = !index}
   end
@@ -84,5 +77,13 @@ class Selector
       @selected[item] ? "" : list.append(item)
     end
     return list
+  end
+  def printer
+    (0 ... @items.length).each do |item|
+      print "#{item}: "
+      print @selected[item] ? "[X] " : "[ ] "
+      puts @items[item]
+    end
+    puts
   end
 end
