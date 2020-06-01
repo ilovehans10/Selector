@@ -12,3 +12,4 @@ Fish.printer
 FishInterface = Interface.new(prompt="=>", mode=["index", "name"], Fish)
 FishInterface.loop(3)
 FishInterface.display
+FishInterface.interactive
